@@ -5,7 +5,7 @@ int** AlocarMatrizRecurso(int linhas);
 void flood_fill(int linha, int coluna, int v[9][9], int* contador, int* cobertura, int** posRec, int nRec, int indice);
 
 int main(int argc, char const *argv[]){
-	int mapa[9][9] = {0}, mapa2[9][9] = {0}, jogador1[2] = {0}, jogador2[2] = {0}, nRec = 0, contador = 0;
+	int mapa[9][9] = {0}, mapa2[9][9] = {0}, jogador1[2] = {0}, jogador2[2] = {0}, nRec = 0, contador = 0, teste = 0;
 	float Ejogador1 = 0.0, Ejogador2 = 0.0;
 	int **posRec;
 	
@@ -13,6 +13,10 @@ int main(int argc, char const *argv[]){
 		for (int j = 0; j < 9; ++j){
 			scanf("%d", &mapa[i][j]);
 			mapa2[i][j] = mapa[i][j];
+
+			if (mapa[i][j] == 0){
+				teste++;
+			}
 		}
 	}
 
@@ -34,8 +38,9 @@ int main(int argc, char const *argv[]){
 	float f, a;
 	for (int i = 0; i < nRec; ++i){
 		f = (float) 1/(nRec);
-		a = (float) cobertura[0]/contador;
+		a = (float) cobertura[i]/teste;
 		Ejogador1 += (f*a);
+		printf("cobertura %d\n", cobertura[i]);
 	}
 
 	printf("%.6f\n", Ejogador1);
@@ -49,8 +54,9 @@ int main(int argc, char const *argv[]){
 	flood_fill(jogador2[0], jogador2[1], mapa2, &contador, cobertura, posRec, nRec, 0);
 	for (int i = 0; i < nRec; ++i){
 		f = (float) 1/(nRec);
-		a = (float) cobertura[0]/contador;
+		a = (float) cobertura[i]/teste;
 		Ejogador2 += (f*a);
+		printf("cobertura %d\n", cobertura[i]);
 	}
 
 	printf("%.6f\n", Ejogador2);
@@ -88,6 +94,10 @@ void flood_fill(int linha, int coluna, int v[9][9], int* contador, int* cobertur
 		if(linha == posRec[i][0] && coluna == posRec[i][1]){
 			cobertura[indice] = *contador;
 			indice++;
+
+			/*printf("contador %d\n", *contador);
+			printf("indice %d\n", indice);
+			printf(" cobertura %d\n", cobertura[indice]);*/
 		}
 	}
 
