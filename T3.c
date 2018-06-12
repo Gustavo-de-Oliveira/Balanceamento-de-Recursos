@@ -1,3 +1,9 @@
+/*
+	Programa que o equilibrio de um jogo RTS.
+	Trabalho 3 - ICC
+	Gustavo de Oliveira Silva - ICMC/USP	
+	28/05/2018
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
